@@ -8,3 +8,12 @@ abstract class MainLayoutState extends Equatable {
 }
 
 class MainLayoutInitial extends MainLayoutState {}
+
+class ChangeNavBarSelectedSuccess extends MainLayoutState {
+  final NavBarItems navBarItem;
+
+  const ChangeNavBarSelectedSuccess({required this.navBarItem});
+
+  @override
+  List<Object> get props => [navBarItem];
+}

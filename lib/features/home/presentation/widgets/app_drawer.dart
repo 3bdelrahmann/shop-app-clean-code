@@ -5,10 +5,13 @@ import 'package:inthekloud_shop_app/core/resources/app_assets.dart';
 import 'package:inthekloud_shop_app/core/resources/app_colors.dart';
 import 'package:inthekloud_shop_app/core/resources/app_fonts.dart';
 import 'package:inthekloud_shop_app/core/resources/app_text_styles.dart';
+import 'package:inthekloud_shop_app/features/home/presentation/bloc/home_bloc.dart';
+import 'package:inthekloud_shop_app/features/profile/presentation/pages/profile_screen.dart';
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({Key? key}) : super(key: key);
+  const AppDrawer({Key? key, required this.bloc}) : super(key: key);
 
+  final HomeBloc bloc;
   @override
   Widget build(BuildContext context) {
     Size mediaQuerySize = MediaQuery.of(context).size;
@@ -53,12 +56,22 @@ class AppDrawer extends StatelessWidget {
           DrawerStrap(
             title: 'Profile',
             icon: Icons.person_outline,
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const ProfileScreen(),
+                  settings: const RouteSettings(name: 'ProfileScreen'),
+                ),
+              );
+            },
           ),
           DrawerStrap(
             title: 'Logout',
             icon: Icons.logout,
-            onTap: () {},
+            onTap: () {
+              bloc.add(UserLogout(context: context));
+            },
           ),
           const Spacer(),
           Align(

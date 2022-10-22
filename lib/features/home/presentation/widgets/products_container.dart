@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inthekloud_shop_app/core/resources/app_fonts.dart';
 import 'package:inthekloud_shop_app/core/resources/app_text_styles.dart';
 import 'package:inthekloud_shop_app/features/home/presentation/bloc/home_bloc.dart';
+import 'package:inthekloud_shop_app/features/product_details/presentation/pages/product_details_page.dart';
 
 import 'product_widget.dart';
 
@@ -39,7 +40,7 @@ class ProductsContainer extends StatelessWidget {
                       top: 20,
                       end: 20.0,
                       bottom: MediaQuery.of(context).size.height * 0.13),
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 19 / 25,
@@ -49,6 +50,19 @@ class ProductsContainer extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return ProductWidget(
                       product: bloc.productsList[index],
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                ProductDetailsScreen(
+                                    productId:
+                                        bloc.productsList[index].id.toString()),
+                            settings:
+                                const RouteSettings(name: 'ProfileScreen'),
+                          ),
+                        );
+                      },
                     );
                   }),
             ),

@@ -6,3 +6,12 @@ abstract class MainLayoutEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class ChangeNavBarSelected extends MainLayoutEvent {
+  final NavBarItems navBarItem;
+
+  const ChangeNavBarSelected({required this.navBarItem});
+
+  @override
+  List<Object> get props => [navBarItem];
+}

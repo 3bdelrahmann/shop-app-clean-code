@@ -8,4 +8,5 @@ abstract class HomeRepository {
   Future<Either<Failure, GetProductsEntity>>? getAllProducts(NoParams params);
   Future<Either<Failure, GetProductsEntity>>? getProductsByCategoryName(
       String category);
+  Future<Either<Failure, bool>>? userLogout(NoParams params);
 }

@@ -22,3 +22,12 @@ class GetProductsByCategoryName extends HomeEvent {
 class GetAllProducts extends HomeEvent {
   const GetAllProducts();
 }
+
+class UserLogout extends HomeEvent {
+  final BuildContext context;
+
+  const UserLogout({required this.context});
+
+  @override
+  List<Object> get props => [context];
+}
