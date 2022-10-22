@@ -3,7 +3,7 @@ import 'package:inthekloud_shop_app/features/home/data/models/get_products_model
 import 'package:inthekloud_shop_app/features/home/domain/entities/get_products_entity.dart';
 
 abstract class HomeRemoteDataSources {
-  Future<List<String>> getCategories();
+  Future<Map<String, List<dynamic>>> getCategories();
   Future<GetProductsEntity> getAllProducts();
   Future<GetProductsEntity> getProductsByCategory(String category);
 }
@@ -13,12 +13,12 @@ class HomeRemoteDataSourcesImp implements HomeRemoteDataSources {
 
   HomeRemoteDataSourcesImp(this.remoteDataSource);
   @override
-  Future<List<String>> getCategories() async {
+  Future<Map<String, List<dynamic>>> getCategories() async {
     String endPoint = 'products/categories';
 
     final response = await remoteDataSource.get(endPoint: endPoint);
 
-    return response;
+    return {"categories": response};
   }
 
   @override

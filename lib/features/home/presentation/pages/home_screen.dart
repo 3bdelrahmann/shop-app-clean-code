@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
       child: BlocConsumer<HomeBloc, HomeState>(
         listener: (context, state) {},
         builder: (context, state) {
+          HomeBloc bloc = BlocProvider.of<HomeBloc>(context);
           if (state is HomeLoading) {
             return const Center(
               child: CircularProgressIndicator(
@@ -41,11 +42,21 @@ class HomeScreen extends StatelessWidget {
               ),
               body: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  SearchContainer(),
-                  CategoriesContainer(),
+                children: [
+                  const SearchContainer(),
+                  CategoriesContainer(
+                    onTap: (category) {
+                      bloc.add(GetProductsByCategoryName(category: category));
+                    },
+                  ),
                   Expanded(
-                    child: ProductsContainer(),
+                    child: (state is GetProductsByCategoryNameLoading)
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.green,
+                            ),
+                          )
+                        : const ProductsContainer(),
                   ),
                 ],
               ),

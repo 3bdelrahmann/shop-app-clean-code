@@ -15,8 +15,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetCategoriesUseCase getCategoriesUseCase;
   final GetProductsByCategoryNameUseCase getProductsByCategoryNameUseCase;
 
-  List<String> categoriesList = [];
+  List<dynamic> categoriesList = [];
   List<ProductsEntity> productsList = [];
+
   HomeBloc(this.getAllProductsUseCase, this.getCategoriesUseCase,
       this.getProductsByCategoryNameUseCase)
       : super(HomeInitial()) {
@@ -52,7 +53,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           emit(GetAllProductsSuccess(products: productsList));
         });
       } else if (event is GetProductsByCategoryName) {
-        emit(HomeLoading());
+        emit(GetProductsByCategoryNameLoading());
 
         final getProductsByCategoryRes =
             await getProductsByCategoryNameUseCase(event.category);

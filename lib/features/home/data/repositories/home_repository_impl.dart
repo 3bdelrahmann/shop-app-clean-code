@@ -14,11 +14,12 @@ class HomeRepositoryImp implements HomeRepository {
   final HomeRemoteDataSources remoteDataSources;
 
   @override
-  Future<Either<Failure, List<String>>>? getCategories(NoParams params) async {
+  Future<Either<Failure, List<dynamic>>>? getCategories(NoParams params) async {
     try {
       final categories = await remoteDataSources.getCategories();
+      List<dynamic> categoriesList = categories['categories']!.toList();
 
-      return Right(categories);
+      return Right(categoriesList);
     } on UnknownServerException {
       return const Left(ServerFailure());
     } catch (requestError) {

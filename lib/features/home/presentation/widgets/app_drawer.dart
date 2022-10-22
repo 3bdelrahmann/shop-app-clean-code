@@ -68,7 +68,7 @@ class AppDrawer extends StatelessWidget {
               child: Text(
                 'Share',
                 style: AppTextStyles().getSemiBoldStyle(
-                    color: AppColors.darkGrey, fontSize: AppFontSize.s16),
+                    color: AppColors.darkGrey, fontSize: AppFontSize.s14),
               ),
             ),
           ),

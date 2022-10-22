@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inthekloud_shop_app/core/extentions/extentions.dart';
 import 'package:inthekloud_shop_app/core/resources/app_colors.dart';
 import 'package:inthekloud_shop_app/core/resources/app_fonts.dart';
 import 'package:inthekloud_shop_app/core/resources/app_text_styles.dart';
 import 'package:inthekloud_shop_app/features/home/presentation/bloc/home_bloc.dart';
 
 class CategoriesContainer extends StatefulWidget {
-  const CategoriesContainer({Key? key}) : super(key: key);
+  const CategoriesContainer({Key? key, required this.onTap}) : super(key: key);
 
+  final void Function(String category) onTap;
   @override
   State<CategoriesContainer> createState() => _CategoriesContainerState();
 }
@@ -43,13 +45,17 @@ class _CategoriesContainerState extends State<CategoriesContainer> {
                       bloc.categoriesList.length,
                       (index) => GestureDetector(
                             onTap: () {
+                              widget.onTap(bloc.categoriesList[index]);
                               setState(() {
                                 selectedIndex = index;
                               });
                             },
                             child: Container(
                               child: Text(
-                                'product',
+                                bloc.categoriesList[index]
+                                        .toString()
+                                        .capitalize() ??
+                                    '',
                                 style: AppTextStyles().getSemiBoldStyle(
                                     color: (selectedIndex == index)
                                         ? AppColors.white

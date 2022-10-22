@@ -39,6 +39,8 @@ class GetAllProductsFailed extends HomeState {
   List<Object> get props => [failureObject];
 }
 
+class GetProductsByCategoryNameLoading extends HomeState {}
+
 class GetProductsByCategoryNameSuccess extends HomeState {
   const GetProductsByCategoryNameSuccess({required this.products});
   final List<ProductsEntity> products;
