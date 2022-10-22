@@ -1,0 +1,17 @@
+import 'package:dartz/dartz.dart';
+import 'package:inthekloud_shop_app/core/error/failures.dart';
+import 'package:inthekloud_shop_app/core/use_cases/usecase.dart';
+import 'package:inthekloud_shop_app/features/home/domain/entities/get_products_entity.dart';
+import 'package:inthekloud_shop_app/features/home/domain/repositories/home_repository.dart';
+
+class GetProductsByCategoryNameUseCase
+    implements UseCase<GetProductsEntity, String> {
+  final HomeRepository homeRepository;
+
+  GetProductsByCategoryNameUseCase(this.homeRepository);
+
+  @override
+  Future<Either<Failure, GetProductsEntity>?> call(String category) async {
+    return await homeRepository.getProductsByCategoryName(category);
+  }
+}
