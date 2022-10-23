@@ -64,5 +64,9 @@ class HomeLocalDataSourcesImp implements HomeLocalDataSources {
       key: Global.userKey,
       value: jsonEncode(UserModel().toJson()),
     );
+    LocalDataSource.setData(
+      key: Global.userCartKey,
+      value: jsonEncode([]),
+    );
   }
 }

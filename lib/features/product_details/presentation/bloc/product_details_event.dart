@@ -6,3 +6,11 @@ abstract class ProductDetailsEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class GetProductsByID extends ProductDetailsEvent {
+  final String productID;
+  const GetProductsByID({required this.productID});
+
+  @override
+  List<Object> get props => [productID];
+}

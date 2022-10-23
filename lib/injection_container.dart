@@ -24,6 +24,10 @@ import 'package:inthekloud_shop_app/features/login/domain/repositories/user_logi
 import 'package:inthekloud_shop_app/features/login/domain/usecases/user_login_usecase.dart';
 import 'package:inthekloud_shop_app/features/login/presentation/bloc/login_bloc.dart';
 import 'package:inthekloud_shop_app/features/main_layout/presentation/bloc/main_layout_bloc.dart';
+import 'package:inthekloud_shop_app/features/product_details/data/datasources/product_details_remote_data_source.dart';
+import 'package:inthekloud_shop_app/features/product_details/data/repositories/product_details_repository_impl.dart';
+import 'package:inthekloud_shop_app/features/product_details/domain/repositories/product_details_repository.dart';
+import 'package:inthekloud_shop_app/features/product_details/domain/usecases/get_product_by_id_usecase.dart';
 import 'package:inthekloud_shop_app/features/product_details/presentation/bloc/product_details_bloc.dart';
 import 'package:inthekloud_shop_app/features/profile/presentation/bloc/profile_bloc.dart';
 
@@ -44,7 +48,7 @@ Future<void> init() async {
 
   sl.registerFactory(() => CartBloc());
 
-  sl.registerFactory(() => ProductDetailsBloc());
+  sl.registerFactory(() => ProductDetailsBloc(sl()));
 
   sl.registerFactory(() => ProfileBloc());
 
@@ -68,6 +72,8 @@ Future<void> init() async {
 
   sl.registerLazySingleton(() => AddToCartUseCase(sl()));
 
+  sl.registerLazySingleton(() => GetProductsByIDUseCase(sl()));
+
 // Repository
 
   sl.registerLazySingleton<UserLoginRepository>(() =>
@@ -79,6 +85,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<HomeRepository>(
       () => HomeRepositoryImp(remoteDataSources: sl(), localDataSources: sl()));
+
+  sl.registerLazySingleton<ProductDetailsRepository>(
+      () => ProductDetailsRepositoryImp(remoteDataSources: sl()));
 
 // DataSources
 
@@ -93,6 +102,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<HomeLocalDataSources>(
       () => HomeLocalDataSourcesImp());
+
+  sl.registerLazySingleton<ProductDetailsRemoteDataSources>(
+      () => ProductDetailsRemoteDataSourcesImp(sl()));
 
   /// Core
 
