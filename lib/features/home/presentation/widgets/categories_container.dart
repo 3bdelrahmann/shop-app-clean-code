@@ -52,10 +52,7 @@ class _CategoriesContainerState extends State<CategoriesContainer> {
                             },
                             child: Container(
                               child: Text(
-                                bloc.categoriesList[index]
-                                        .toString()
-                                        .capitalize() ??
-                                    '',
+                                '${bloc.categoriesList[index]}'.capitalize(),
                                 style: AppTextStyles().getSemiBoldStyle(
                                     color: (selectedIndex == index)
                                         ? AppColors.white

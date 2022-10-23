@@ -36,7 +36,7 @@ class FetchEventsRepositoryImp implements FetchEventsRepository {
   }
 
   @override
-  Future<Either<Failure, CartModel>>? cartDataFromLocal() async {
+  Future<Either<Failure, List<CartModel>>>? cartDataFromLocal() async {
     try {
       final cartData = await homeLocalDataSources.getCartData();
       return Right(cartData);

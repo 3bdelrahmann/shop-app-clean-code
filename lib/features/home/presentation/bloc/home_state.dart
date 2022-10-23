@@ -68,3 +68,15 @@ class UserLogoutFailed extends HomeState {
   @override
   List<Object> get props => [failureObject];
 }
+
+class AddToCartLoading extends HomeState {}
+
+class AddToCartSuccess extends HomeState {}
+
+class AddToCartFailed extends HomeState {
+  const AddToCartFailed({required this.failureObject});
+  final Failure failureObject;
+
+  @override
+  List<Object> get props => [failureObject];
+}

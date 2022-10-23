@@ -11,10 +11,12 @@ class ProductWidget extends StatelessWidget {
     Key? key,
     required this.product,
     required this.onTap,
+    required this.onAddToCartTap,
   }) : super(key: key);
 
   final ProductsEntity product;
   final void Function() onTap;
+  final void Function(int length) onAddToCartTap;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -33,8 +35,9 @@ class ProductWidget extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 10.0),
                   child: Image(
                     image: NetworkImage(product.images![0]),
                     height: 100.0,
@@ -71,6 +74,7 @@ class ProductWidget extends StatelessWidget {
                 Expanded(
                   child: AddToCardButton(
                     product: product,
+                    onTap: (length) => onAddToCartTap(length),
                   ),
                 )
               ],

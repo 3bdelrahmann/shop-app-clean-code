@@ -6,5 +6,5 @@ import 'package:inthekloud_shop_app/features/login/data/models/user_model.dart';
 abstract class FetchEventsRepository {
   Future<Either<Failure, UserModel>>? userDataFromLocal();
   Future<Either<Failure, bool>>? userLoginStatusDataFromLocal();
-  Future<Either<Failure, CartModel>>? cartDataFromLocal();
+  Future<Either<Failure, List<CartModel>>>? cartDataFromLocal();
 }

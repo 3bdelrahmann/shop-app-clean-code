@@ -11,6 +11,7 @@ import 'package:inthekloud_shop_app/features/home/data/datasources/home_local_da
 import 'package:inthekloud_shop_app/features/home/data/datasources/home_remote_data_source.dart';
 import 'package:inthekloud_shop_app/features/home/data/repositories/home_repository_impl.dart';
 import 'package:inthekloud_shop_app/features/home/domain/repositories/home_repository.dart';
+import 'package:inthekloud_shop_app/features/home/domain/usecases/add_to_cart_usecase.dart';
 import 'package:inthekloud_shop_app/features/home/domain/usecases/get_all_products_usecase.dart';
 import 'package:inthekloud_shop_app/features/home/domain/usecases/get_categories_usecase.dart';
 import 'package:inthekloud_shop_app/features/home/domain/usecases/get_product_by_name_usecase.dart';
@@ -39,7 +40,7 @@ Future<void> init() async {
 
   sl.registerFactory(() => FetchEventsBloc(sl(), sl(), sl()));
 
-  sl.registerFactory(() => HomeBloc(sl(), sl(), sl(), sl()));
+  sl.registerFactory(() => HomeBloc(sl(), sl(), sl(), sl(), sl()));
 
   sl.registerFactory(() => CartBloc());
 
@@ -64,6 +65,8 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetProductsByCategoryNameUseCase(sl()));
 
   sl.registerLazySingleton(() => UserLogoutUseCase(sl()));
+
+  sl.registerLazySingleton(() => AddToCartUseCase(sl()));
 
 // Repository
 

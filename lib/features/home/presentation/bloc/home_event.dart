@@ -31,3 +31,12 @@ class UserLogout extends HomeEvent {
   @override
   List<Object> get props => [context];
 }
+
+class AddToCart extends HomeEvent {
+  final List<CartEntity> cart;
+
+  const AddToCart({required this.cart});
+
+  @override
+  List<Object> get props => [cart];
+}

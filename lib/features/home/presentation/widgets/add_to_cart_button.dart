@@ -4,18 +4,29 @@ import 'package:inthekloud_shop_app/core/resources/app_fonts.dart';
 import 'package:inthekloud_shop_app/core/resources/app_text_styles.dart';
 import 'package:inthekloud_shop_app/features/home/domain/entities/products_entity.dart';
 
-class AddToCardButton extends StatelessWidget {
-  AddToCardButton({Key? key, required this.product}) : super(key: key);
+class AddToCardButton extends StatefulWidget {
+  AddToCardButton({Key? key, required this.product, required this.onTap})
+      : super(key: key);
 
   final ProductsEntity product;
+  final void Function(int length) onTap;
 
-  int length = 0;
+  @override
+  State<AddToCardButton> createState() => _AddToCardButtonState();
+}
+
+class _AddToCardButtonState extends State<AddToCardButton> {
+  int quantity = 0;
+
   @override
   Widget build(BuildContext context) {
-    if (length == 0) {
+    if (quantity == 0) {
       return InkWell(
         onTap: () {
-          length += 1;
+          setState(() {
+            quantity += 1;
+          });
+          widget.onTap(quantity);
         },
         child: Container(
           decoration: const BoxDecoration(
@@ -34,7 +45,7 @@ class AddToCardButton extends StatelessWidget {
       );
     } else {
       return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
         decoration: const BoxDecoration(
           color: AppColors.green,
           borderRadius:
@@ -45,7 +56,10 @@ class AddToCardButton extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                length -= 1;
+                setState(() {
+                  quantity -= 1;
+                });
+                widget.onTap(quantity);
               },
               child: Container(
                 padding: const EdgeInsets.all(5),
@@ -59,13 +73,16 @@ class AddToCardButton extends StatelessWidget {
               ),
             ),
             Text(
-              length.toString(),
+              quantity.toString(),
               style: AppTextStyles().getBoldStyle(
                   color: AppColors.white, fontSize: AppFontSize.s16),
             ),
             GestureDetector(
               onTap: () {
-                length += 1;
+                setState(() {
+                  quantity += 1;
+                });
+                widget.onTap(quantity);
               },
               child: Container(
                 padding: const EdgeInsets.all(5),

@@ -1,4 +1,3 @@
-import 'package:inthekloud_shop_app/features/home/domain/entities/products_entity.dart';
 import 'package:inthekloud_shop_app/features/login/domain/entities/user_entity.dart';
 
 class UserModel extends UserEntity {
@@ -10,8 +9,7 @@ class UserModel extends UserEntity {
       String? lastName,
       String? gender,
       String? image,
-      String? token,
-      List<ProductsEntity>? cart})
+      String? token})
       : super(
             id: id,
             username: username,
@@ -20,8 +18,7 @@ class UserModel extends UserEntity {
             lastName: lastName,
             gender: gender,
             image: image,
-            token: token,
-            cart: cart);
+            token: token);
 
   UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

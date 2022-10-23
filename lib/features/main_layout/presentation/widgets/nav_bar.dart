@@ -6,16 +6,16 @@ import 'package:inthekloud_shop_app/core/extentions/extentions.dart';
 import 'package:inthekloud_shop_app/core/global_variables.dart';
 import 'package:inthekloud_shop_app/core/resources/app_colors.dart';
 import 'package:inthekloud_shop_app/core/resources/app_text_styles.dart';
-import 'package:inthekloud_shop_app/features/home/domain/entities/products_entity.dart';
+import 'package:inthekloud_shop_app/features/home/domain/entities/cart_entity.dart';
 import 'package:inthekloud_shop_app/features/main_layout/presentation/bloc/main_layout_bloc.dart';
 import 'package:inthekloud_shop_app/features/main_layout/presentation/widgets/nav_bar_icon.dart';
 
 class CustomNavBar extends StatelessWidget {
-  CustomNavBar({Key? key}) : super(key: key);
+  const CustomNavBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<ProductsEntity> cart = Global.userObj.cart ?? [];
+    List<CartEntity> cart = Global.cartList;
     return BlocConsumer<MainLayoutBloc, MainLayoutState>(
       listener: (context, state) {
         // TODO: implement listener
@@ -92,7 +92,7 @@ class CartWidget extends StatelessWidget {
       return Badge(
         badgeColor: AppColors.lightGreen,
         badgeContent: Text(
-          '0',
+          Global.cartList.length.toString(),
           style: AppTextStyles().getRegularStyle(
             color: AppColors.white,
           ),

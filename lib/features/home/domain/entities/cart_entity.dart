@@ -1,12 +1,11 @@
 import 'package:equatable/equatable.dart';
-import 'package:inthekloud_shop_app/features/home/data/models/products_model.dart';
 
 class CartEntity extends Equatable {
-  List<ProductsModel>? products;
-  String? userId;
+  int? productID;
+  int? quantity;
 
-  CartEntity({this.products, this.userId});
+  CartEntity({this.productID, this.quantity});
 
   @override
-  List<Object?> get props => [products, userId];
+  List<Object?> get props => [productID, quantity];
 }

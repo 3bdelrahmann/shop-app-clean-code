@@ -4,7 +4,7 @@ import 'package:inthekloud_shop_app/features/login/domain/entities/user_entity.d
 class Global {
   static bool isLoggedIn = false;
   static UserEntity userObj = UserEntity();
-  static CartEntity cartObj = CartEntity();
+  static List<CartEntity> cartList = [];
 
   // SharedPref keys
   static String userKey = 'user';
