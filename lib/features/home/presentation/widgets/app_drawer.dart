@@ -70,7 +70,29 @@ class AppDrawer extends StatelessWidget {
             title: 'Logout',
             icon: Icons.logout,
             onTap: () {
-              bloc.add(UserLogout(context: context));
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return CupertinoAlertDialog(
+                    title: const Text('Logout'),
+                    content: const Text(
+                        'All your Data will be deleted, are you sure?'),
+                    actions: <Widget>[
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Cancel')),
+                      TextButton(
+                        onPressed: () {
+                          bloc.add(UserLogout(context: context));
+                        },
+                        child: const Text('Logout'),
+                      )
+                    ],
+                  );
+                },
+              );
             },
           ),
           const Spacer(),

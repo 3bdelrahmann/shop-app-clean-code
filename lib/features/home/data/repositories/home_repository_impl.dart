@@ -4,7 +4,7 @@ import 'package:inthekloud_shop_app/core/error/failures.dart';
 import 'package:inthekloud_shop_app/core/use_cases/usecase.dart';
 import 'package:inthekloud_shop_app/features/home/data/datasources/home_local_data_source.dart';
 import 'package:inthekloud_shop_app/features/home/data/datasources/home_remote_data_source.dart';
-import 'package:inthekloud_shop_app/features/home/domain/entities/cart_entity.dart';
+import 'package:inthekloud_shop_app/features/home/data/models/cart_model.dart';
 import 'package:inthekloud_shop_app/features/home/domain/entities/get_products_entity.dart';
 import 'package:inthekloud_shop_app/features/home/domain/repositories/home_repository.dart';
 
@@ -92,7 +92,7 @@ class HomeRepositoryImp implements HomeRepository {
   }
 
   @override
-  Future<Either<Failure, bool>>? addToCart(List<CartEntity> cart) async {
+  Future<Either<Failure, bool>>? addToCart(List<CartModel> cart) async {
     try {
       await localDataSources.saveCartData(cart);
 

@@ -29,20 +29,19 @@ class FetchEventsBloc extends Bloc<FetchEventsEvent, FetchEventsState> {
         salesmanData
             ?.fold((failure) => emit(FetchEventsFailed(failureObject: failure)),
                 (salesman) {
-          Global.userObj = salesman;
-          emit(FetchEventsSuccess());
-        });
-        salesmanLoginStatus
-            ?.fold((failure) => emit(FetchEventsFailed(failureObject: failure)),
-                (status) {
-          Global.isLoggedIn = status;
-          emit(FetchEventsSuccess());
-        });
-        cartData
-            ?.fold((failure) => emit(FetchEventsFailed(failureObject: failure)),
+          salesmanLoginStatus?.fold(
+              (failure) => emit(FetchEventsFailed(failureObject: failure)),
+              (status) {
+            Global.userObj = salesman;
+            Global.isLoggedIn = status;
+            emit(FetchEventsSuccess());
+            cartData?.fold(
+                (failure) => emit(FetchEventsFailed(failureObject: failure)),
                 (cart) {
-          Global.cartList = cart;
-          emit(FetchEventsSuccess());
+              Global.cartList = cart;
+              emit(FetchEventsSuccess());
+            });
+          });
         });
       }
     });

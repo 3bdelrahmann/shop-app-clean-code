@@ -33,7 +33,7 @@ class UserLogout extends HomeEvent {
 }
 
 class AddToCart extends HomeEvent {
-  final List<CartEntity> cart;
+  final List<CartModel> cart;
 
   const AddToCart({required this.cart});
 

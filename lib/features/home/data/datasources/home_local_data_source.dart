@@ -3,12 +3,11 @@ import 'dart:convert';
 import 'package:inthekloud_shop_app/core/data_sources/local_data_source.dart';
 import 'package:inthekloud_shop_app/core/global_variables.dart';
 import 'package:inthekloud_shop_app/features/home/data/models/cart_model.dart';
-import 'package:inthekloud_shop_app/features/home/domain/entities/cart_entity.dart';
 import 'package:inthekloud_shop_app/features/login/data/models/user_model.dart';
 import 'package:inthekloud_shop_app/features/login/domain/entities/user_entity.dart';
 
 abstract class HomeLocalDataSources {
-  Future<void> saveCartData(List<CartEntity> cart);
+  Future<void> saveCartData(List<CartModel> cart);
   Future<List<CartModel>> getCartData();
   Future<void> saveUserLogoutStatus();
   Future<void> clearUserData();
@@ -27,7 +26,7 @@ class HomeLocalDataSourcesImp implements HomeLocalDataSources {
     );
 
     await LocalDataSource.setData(
-      key: Global.userKey,
+      key: Global.userCartKey,
       value: encodedData,
     );
   }
@@ -59,7 +58,7 @@ class HomeLocalDataSourcesImp implements HomeLocalDataSources {
   @override
   Future<void> clearUserData() async {
     Global.userObj = UserEntity();
-    Global.cartList = [];
+    Global.cartList.clear();
 
     await LocalDataSource.setData(
       key: Global.userKey,

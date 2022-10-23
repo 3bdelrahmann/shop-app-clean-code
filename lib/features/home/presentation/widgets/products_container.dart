@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inthekloud_shop_app/core/global_variables.dart';
 import 'package:inthekloud_shop_app/core/resources/app_fonts.dart';
 import 'package:inthekloud_shop_app/core/resources/app_text_styles.dart';
-import 'package:inthekloud_shop_app/features/home/domain/entities/cart_entity.dart';
+import 'package:inthekloud_shop_app/features/home/data/models/cart_model.dart';
 import 'package:inthekloud_shop_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:inthekloud_shop_app/features/product_details/presentation/pages/product_details_page.dart';
 
@@ -67,7 +67,7 @@ class ProductsContainer extends StatelessWidget {
                       },
                       onAddToCartTap: (int length) {
                         Global.cartList.insertAll(0, [
-                          CartEntity(
+                          CartModel(
                               productID: bloc.productsList[index].id as int,
                               quantity: length)
                         ]);

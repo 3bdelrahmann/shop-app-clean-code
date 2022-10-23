@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inthekloud_shop_app/core/error/failures.dart';
 import 'package:inthekloud_shop_app/core/use_cases/usecase.dart';
-import 'package:inthekloud_shop_app/features/home/domain/entities/cart_entity.dart';
+import 'package:inthekloud_shop_app/features/home/data/models/cart_model.dart';
 import 'package:inthekloud_shop_app/features/home/domain/entities/products_entity.dart';
 import 'package:inthekloud_shop_app/features/home/domain/usecases/add_to_cart_usecase.dart';
 import 'package:inthekloud_shop_app/features/home/domain/usecases/get_all_products_usecase.dart';
